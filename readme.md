@@ -1,0 +1,1 @@
+ubuntu18.04 nginx php7.2
