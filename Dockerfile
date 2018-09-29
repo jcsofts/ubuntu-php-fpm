@@ -47,6 +47,7 @@ COPY conf/supervisor/nginx-php-fpm.conf /etc/supervisor/conf.d/supervisord.conf
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 COPY conf/site/ /etc/nginx/sites-available/
 COPY script/start.sh /usr/local/bin/start.sh
+COPY src/ /var/www/html/
 
 
 RUN ln -s /etc/nginx/sites-available/default.conf /etc/nginx/sites-enabled/default.conf && \

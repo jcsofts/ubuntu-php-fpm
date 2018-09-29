@@ -108,10 +108,10 @@ XdebugFile='/etc/php/7.2/fpm/conf.d/20-xdebug.ini'
 if [ "$ENABLE_XDEBUG" == "1" ] ; then
   echo "Enabling xdebug"
     # See if file contains xdebug text.
-    if grep -q xdebug.remote_enable "$XdebugFile"; then
+    if [ -f $XdebugFile ]; then
         echo "Xdebug already enabled... skipping"
     else
-      sed -i "s/;zend_extension=xdebug.so/zend_extension=xdebug.so/g" $XdebugFile
+      echo "zend_extension=xdebug.so" >> $XdebugFile
       echo "xdebug.remote_enable=1 "  >> $XdebugFile
       echo "xdebug.remote_log=/tmp/xdebug.log"  >> $XdebugFile
       echo "xdebug.remote_autostart=false "  >> $XdebugFile # I use the xdebug chrome extension instead of using autostart
@@ -120,6 +120,8 @@ if [ "$ENABLE_XDEBUG" == "1" ] ; then
       # NOTE: xdebug.remote_host is not needed here if you set an environment variable in docker-compose like so `- XDEBUG_CONFIG=remote_host=192.168.111.27`.
       #       you also need to set an env var `- PHP_IDE_CONFIG=serverName=docker`
     fi
+else
+  rm -rf $XdebugFile
 fi
 
 if [ ! -z "$PUID" ]; then
