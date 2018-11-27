@@ -28,7 +28,8 @@ RUN apt-get update && \
   	sed -i \
     	-e "s/;session.save_path = \"\/var\/lib\/php\/sessions\"/session.save_path = \"\/var\/lib\/php\/sessions\"/g" \
     	${php_ini} && \
-    mkdir /var/run/php
+    mkdir /var/run/php && \
+    rm "/etc/php/7.2/fpm/conf.d/20-xdebug.ini"
 
 COPY script/start.sh /usr/local/bin/start.sh
 
