@@ -103,7 +103,7 @@ fi
 #    fi
 #fi
 
-# Start supervisord and services
+
 rm -rf /var/run/php/php7.2-fpm.pid
-# Start supervisord and services
+
 exec /usr/sbin/php-fpm7.2 --nodaemonize

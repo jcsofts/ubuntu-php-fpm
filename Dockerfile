@@ -16,11 +16,11 @@ RUN apt-get update && \
     rm -rf /usr/share/man/??_* && \
     sed -i \
         -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" \
-        -e "s/pm.max_children = 5/pm.max_children = 10/g" \
-        -e "s/pm.start_servers = 2/pm.start_servers = 3/g" \
+        -e "s/pm.max_children = 5/pm.max_children = 50/g" \
+        -e "s/pm.start_servers = 2/pm.start_servers = 6/g" \
         -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" \
-        -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" \
-        -e "s/;pm.max_requests = 500/pm.max_requests = 200/g" \
+        -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 10/g" \
+        -e "s/;pm.max_requests = 500/pm.max_requests = 500/g" \
         -e "s/;listen.mode = 0660/listen.mode = 0666/g" \
         -e "s/listen = \/run\/php\/php7.2-fpm.sock/listen = [::]:9000/g" \
         -e "s/^;clear_env = no$/clear_env = no/" \
